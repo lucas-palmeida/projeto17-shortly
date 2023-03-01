@@ -1,6 +1,7 @@
 import { db } from "../database/connection.js";
+import bcrypt from "bcrypt";
 
-export async function registerUser(req, res) {
+export async function signUp(req, res) {
     const { name, email, password } = req.body;
 
     try {
@@ -8,7 +9,7 @@ export async function registerUser(req, res) {
 
         if(userExists.rows[0]) return res.status(409).send("Não foi possível concluir o cadastro.");
 
-        await db.query("INSERT INTO users (name, email, password) VALUES ($1, $2, $3)", [name, email, password]);
+        await db.query("INSERT INTO users (name, email, password) VALUES ($1, $2, $3)", [name, email, bcrypt.hashSync(password, 10)]);
 
         return res.sendStatus(201);
     } catch (error) {
