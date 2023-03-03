@@ -46,7 +46,7 @@ export async function openUrl(req, res) {
 
         if(!getUrl.rows[0]) return res.sendStatus(404);
 
-        await db.query("UPDATE urls SET views = $1 WHERE id = $2", [getUrl.rows[0].views + 1, getUrl.rows[0].id]);
+        await db.query("UPDATE urls SET views = $1 WHERE id = $2", [(getUrl.rows[0].views + 1), getUrl.rows[0].id]);
 
         res.redirect(getUrl.rows[0].url);
     } catch (error) {
