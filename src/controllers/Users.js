@@ -23,8 +23,7 @@ export async function getUser(req, res) {
 
         requestedUser.rows[0].shortenedUrls = checkUrls.rows;
 
-        console.log(requestedUser.rows[0]);
-        return res.sendStatus(200);
+        return res.sendStatus(requestedUser.rows[0]);
     } catch (error) {
         return res.status(500).send(error.message);
     }
