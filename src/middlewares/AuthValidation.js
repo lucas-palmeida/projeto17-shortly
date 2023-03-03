@@ -14,7 +14,7 @@ export async function authValidation(req, res, next) {
 
         res.locals.session = checkSession.rows[0];
 
-        next();
+        return next();
     } catch (error) {
         return res.status(500).send(error.message);
     }

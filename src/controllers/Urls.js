@@ -30,7 +30,7 @@ export async function getUrlById(req, res) {
             id: getUrl.rows[0].id,
             shortUrl: getUrl.rows[0].shortUrl,
             url: getUrl.rows[0].url
-        }
+        };
 
         return res.status(200).send(result);
     } catch (error) {
@@ -48,7 +48,7 @@ export async function openUrl(req, res) {
 
         await db.query("UPDATE urls SET views = $1 WHERE id = $2", [(getUrl.rows[0].views + 1), getUrl.rows[0].id]);
 
-        res.redirect(getUrl.rows[0].url);
+        return res.redirect(getUrl.rows[0].url);
     } catch (error) {
         return res.status(500).send(error.message);
     }
