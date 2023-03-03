@@ -242,13 +242,6 @@ ALTER TABLE ONLY public.urls
 
 
 --
--- Name: SCHEMA public; Type: ACL; Schema: -; Owner: -
---
-
-GRANT ALL ON SCHEMA public TO devdriven;
-
-
---
 -- PostgreSQL database dump complete
 --
 
